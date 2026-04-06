@@ -1,0 +1,9 @@
+- name: remove cmatrix
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: remove cmatrix
+      apt:
+        name: cmatrix
+        state: absent

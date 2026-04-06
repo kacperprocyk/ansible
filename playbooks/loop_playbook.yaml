@@ -1,0 +1,21 @@
+- name: install multiple packages
+  hosts: all
+  become: true
+
+  tasks:
+    - name: install packages in loop
+      apt: 
+        name: "{{ item }}"
+        state: present
+      loop:
+        - nginx
+        - curl
+        - git
+
+    - name: verify versions
+      apt:
+        name: "{{ item }}"
+        state: latest
+      loop:
+        - htop
+        - cmatrix

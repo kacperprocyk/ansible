@@ -1,0 +1,15 @@
+---
+
+- name: install htop
+  hosts: all
+  become: yes
+
+  tasks:
+    - name: update apt cache
+      apt:
+        update_cache: yes
+
+    - name: install htop
+      apt:
+        name: htop
+        state: present

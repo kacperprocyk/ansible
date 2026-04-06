@@ -1,0 +1,21 @@
+- name: install package on Debian OS only
+  hosts: all
+  become: true
+
+  tasks:
+    - name: install nginx on Debian OS
+      when: ansible_os_family == "Debian"
+      apt:
+        name: nginx
+        state: present
+ 
+    - name: update apt cache 
+      apt:
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    - name: install nginx on RedHat OS
+      when: ansible_os_family == "RedHat"
+      yum:
+        name: nginx
+        state: present
