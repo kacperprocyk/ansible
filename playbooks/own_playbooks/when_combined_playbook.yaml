@@ -1,0 +1,15 @@
+- name: combined installation of nginx
+  hosts: all 
+  become: true
+
+  tasks:
+    - name: apt install nginx and cmatrix on Ubuntu hosts with different versions
+      apt:
+        name: 
+          - nginx
+          - cmatrix
+        state: latest
+        update_cache: yes
+      when: 
+        - ansible_distribution == "Ubuntu"
+        - ansible_distribution_version in ["20.04", "22.04", "24.04"]
