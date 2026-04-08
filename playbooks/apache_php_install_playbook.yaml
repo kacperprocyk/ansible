@@ -1,0 +1,21 @@
+- name: install apache and php on Ubuntu and RedHat hosts
+  hosts: all
+  become: true
+
+  tasks:
+    - name: apache and php installation on Ubuntu family hosts
+      package:
+        name: 
+          - apache2
+          - libapache2-mod-php
+        state: latest
+        update_cache: yes
+      when: ansible_distribution == "Ubuntu"
+  
+    - name: apache and php installation on RedHat family hosts
+      package:
+        name:
+          - httpd
+          - php
+        state: latest
+      when: ansible_distribution == "Rocky"

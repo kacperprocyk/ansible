@@ -1,0 +1,17 @@
+- name: nginx installation on Debian and RedHat
+  hosts: all
+  become: true
+
+  tasks:
+    - name: nginx installation on Debian
+      apt:
+        name: nginx
+        state: present
+        update_cache: yes
+      when: ansible_os_family == "Debian"
+
+    - name: nginx installation on RedHat
+      dnf:
+        name: nginx
+        state: present
+      when: ansible_os_family == "RedHat"

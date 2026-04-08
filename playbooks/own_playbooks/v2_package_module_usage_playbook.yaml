@@ -1,0 +1,14 @@
+- name: multiple package installation on different hosts
+  hosts: all
+  become: true
+
+  tasks:
+    - name: multiple package installation on different hosts
+      package:
+        name:
+          - htop
+          - nginx
+          - curl
+          - batcat
+          - git
+        state: present

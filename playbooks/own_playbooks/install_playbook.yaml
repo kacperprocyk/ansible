@@ -1,15 +1,11 @@
----
-
-- name: install htop
+- name: curl installation od Debian host
   hosts: all
-  become: yes
+  become: true
 
   tasks:
-    - name: update apt cache
+    - name: curl installation only on Debian hosts
       apt:
-        update_cache: yes
-
-    - name: install htop
-      apt:
-        name: htop
+        name: curl
         state: present
+      when: 
+        - ansible_os_family == "Debian" 

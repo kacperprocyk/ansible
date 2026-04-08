@@ -1,6 +1,12 @@
-root@172.19.0.2 apache_package=apache2 php_package=libapache2-mod-php
-root@172.19.0.3 apache_package=apache2 php_package=libapache2-mod-php
-root@172.19.0.4 apache_package=apache2 php_package=libapache2-mod-php
-root@172.19.0.5 apache_package=httpd php_package=php
+[web_servers]
+root@172.19.0.2 
+root@172.19.0.3 
 
+[db_servers]
+root@172.19.0.4 
+
+[file_servers]
+root@172.19.0.5 
+
+# root@172.19.0.2 - Rocky, rest - Ubuntu
 

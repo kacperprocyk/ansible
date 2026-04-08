@@ -1,0 +1,34 @@
+- name: package installation with the use of "package" module
+  hosts: all
+  become: true
+
+  tasks: 
+    - name: package installation on different os hosts
+      package: 
+        name: nginx
+        state: present
+
+    - name: cmatrix installation on different hosts
+      package:
+        name: cmatrix
+        state: present
+  
+    - name: htop installation on different hosts:
+      package:
+        name: htop 
+        state: present
+ 
+    - name: curl installation on different hosts
+      package:
+        name: curl
+        state: present
+ 
+    - name: tailscale installation on different hosts
+      package: 
+        name: tailscale
+        state: present
+
+    - name: batcat installation on different hosts
+      package:
+        name: batcat
+        state: present
