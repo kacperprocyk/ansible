@@ -18,6 +18,25 @@
         update_cache: yes
       when: ansible_distribution == "Ubuntu"
 
+
+- hosts: workstations
+  become: false
+  tasks:
+
+    - name: install unzip
+      package:
+        name: unzip
+    
+    - name: install terraform
+      unarchive: 
+        src: https://releases.hashicorp.com/terraform/1.14.8/terraform_1.14.8_linux_amd64.zip
+        dest: /usr/local/bin
+        remote_src: yes
+        mode: 0755
+        owner: root
+        group: root
+
+
 - hosts: web_servers
   become: true
   tasks:
@@ -39,6 +58,16 @@
           - php
         state: latest
       when: ansible_distribution == "Rocky"
+
+    - name: copy web_server_file.txt on the hosts
+      tags: apache,php,ubuntu,rocky
+      copy:
+        src: web_server_file.txt
+        dest: /home/web_server_file1.txt
+        owner: root
+        group: root 
+        mode: 0644
+      
 
 - hosts: db_servers
   become: true
@@ -68,6 +97,14 @@
         name: samba
         state: latest
 
+    - name: copy default file
+      tags: samba
+      copy:
+        src: file3.txt
+        dest: /home/copied_file3.txt
+        owner: root
+        group: root
+        mode: 0644
 
 
 
