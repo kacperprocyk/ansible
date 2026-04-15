@@ -1,0 +1,21 @@
+- name: update all available hosts
+  hosts: all
+  become: true
+
+  tasks:
+
+    - name: install updates (Rocky)
+      tags: always
+      dnf:
+        update_only: yes
+        update_cache: yes
+        autoremove: yes
+      when: ansible_distribution == "Rocky"
+
+    - name: install updates (Ubuntu)
+      tags: always
+      apt:
+        upgrade: dist
+        update_cache: yes
+        autoremove: yes
+      when: ansible_distribution == "Ubuntu"

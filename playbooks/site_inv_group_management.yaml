@@ -59,14 +59,14 @@
         state: latest
       when: ansible_distribution == "Rocky"
 
-    - name: copy web_server_file.txt on the hosts
-      tags: apache,php,ubuntu,rocky
+    - name: copy default_site.html file into servers
+      tags: apache,apache2,httpd
       copy:
-        src: web_server_file.txt
-        dest: /home/web_server_file1.txt
+        src: default_site.html
+        dest: /var/www/html/index.html
         owner: root
-        group: root 
-        mode: 0644
+        group: root
+        mode: 644
       
 
 - hosts: db_servers

@@ -1,0 +1,10 @@
+- name: curl install playbook
+  hosts: web_servers
+  become: true
+
+  tasks:
+    - name: install curl package
+      package:
+        name: curl
+        state: present
+      when: ansible_os_family == "Debian"
